@@ -174,6 +174,10 @@ function renderForecast(dailyForecast, timezone) {
   forecastContainer.innerHTML = '';
   forecastContainer.append(headingCol);
   for (var i = 0; i < dailyForecast.length; i++) {
+    // The api returns forecast data which may include 12pm on the same day and
+    // always includes the next 7 days. The api documentation does not provide
+    // information on the behavior for including the same day. Results may have
+    // 7 or 8 items.
     if (dailyForecast[i].dt >= startDt && dailyForecast[i].dt < endDt) {
       renderForecastCard(dailyForecast[i], timezone);
     }
